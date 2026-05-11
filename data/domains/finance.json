@@ -1,0 +1,50 @@
+{
+  "slug": "finance",
+  "name": "金融财经",
+  "icon": "💰",
+  "color": "#f59e0b",
+  "enabled": true,
+  "sort_order": 2,
+  "categories": [
+    { "key": "market", "label_zh": "市场", "label_en": "Markets" },
+    { "key": "macro", "label_zh": "宏观", "label_en": "Macro" },
+    { "key": "company", "label_zh": "公司", "label_en": "Companies" },
+    { "key": "crypto", "label_zh": "加密", "label_en": "Crypto" },
+    { "key": "analysis", "label_zh": "分析", "label_en": "Analysis" }
+  ],
+  "sources": {
+    "rss": [
+      { "name": "CNBC Top News", "url": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114", "category": "finance-global" },
+      { "name": "CNBC Finance", "url": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000664", "category": "finance-global" },
+      { "name": "MarketWatch", "url": "https://feeds.marketwatch.com/marketwatch/topstories/", "category": "finance-global" },
+      { "name": "Seeking Alpha", "url": "https://seekingalpha.com/market_currents.xml", "category": "finance-analysis" },
+      { "name": "Motley Fool", "url": "https://www.fool.com/feeds/index.aspx", "category": "finance-analysis" },
+      { "name": "Wolf Street", "url": "https://wolfstreet.com/feed/", "category": "finance-macro" },
+      { "name": "Abnormal Returns", "url": "https://abnormalreturns.com/feed/", "category": "finance-analysis" },
+      { "name": "Bloomberg", "url": "https://feeds.bloomberg.com/technology/news.rss", "category": "finance-global" },
+      { "name": "Financial Times", "url": "https://www.ft.com/rss/home", "category": "finance-global" },
+      { "name": "Benzinga", "url": "https://www.benzinga.com/feed", "category": "finance-analysis" },
+      { "name": "华尔街见闻", "url": "http://localhost:1200/wallstreetcn/live", "category": "finance-cn" },
+      { "name": "财联社电报", "url": "http://localhost:1200/cls/telegraph", "category": "finance-cn" },
+      { "name": "财联社头条", "url": "http://localhost:1200/cls/depth", "category": "finance-cn" },
+      { "name": "金十数据", "url": "http://localhost:1200/jin10/flash", "category": "finance-cn" },
+      { "name": "财新网", "url": "http://localhost:1200/caixin/latest", "category": "finance-cn" },
+      { "name": "格隆汇", "url": "http://localhost:1200/gelonghui/live", "category": "finance-cn" },
+      { "name": "第一财经", "url": "http://localhost:1200/yicai/brief", "category": "finance-cn" },
+      { "name": "同花顺", "url": "http://localhost:1200/10jqka/realtimenews", "category": "finance-cn" },
+      { "name": "澎湃新闻", "url": "http://localhost:1200/thepaper/featured", "category": "finance-cn" }
+    ],
+    "reddit": {
+      "enabled": true,
+      "subreddits": [
+        { "subreddit": "wallstreetbets", "sort": "hot", "fetch_limit": 10, "min_score": 500 },
+        { "subreddit": "investing", "sort": "hot", "fetch_limit": 10, "min_score": 100 },
+        { "subreddit": "stocks", "sort": "hot", "fetch_limit": 10, "min_score": 100 }
+      ]
+    }
+  },
+  "filtering": {
+    "ai_score_threshold": 6.0,
+    "time_window_hours": 168
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "slug": "ai",
+  "name": "人工智能",
+  "icon": "🤖",
+  "color": "#8b5cf6",
+  "enabled": true,
+  "sort_order": 1,
+  "categories": [
+    { "key": "model", "label_zh": "模型", "label_en": "Models" },
+    { "key": "product", "label_zh": "产品", "label_en": "Products" },
+    { "key": "industry", "label_zh": "行业", "label_en": "Industry" },
+    { "key": "paper", "label_zh": "论文", "label_en": "Papers" },
+    { "key": "tip", "label_zh": "技巧", "label_en": "Tips" }
+  ],
+  "sources": {
+    "hackernews": {
+      "enabled": true,
+      "fetch_top_stories": 30,
+      "min_score": 150
+    },
+    "rss": [
+      { "name": "OpenAI Blog", "url": "https://openai.com/blog/rss.xml", "category": "ai-official" },
+      { "name": "Google AI Blog", "url": "https://blog.google/technology/ai/rss/", "category": "ai-official" },
+      { "name": "DeepMind Blog", "url": "https://deepmind.google/blog/rss.xml", "category": "ai-official" },
+      { "name": "Meta Engineering", "url": "https://engineering.fb.com/feed/", "category": "ai-official" },
+      { "name": "NVIDIA AI Blog", "url": "https://blogs.nvidia.com/feed/", "category": "ai-official" },
+      { "name": "Simon Willison", "url": "https://simonwillison.net/atom/everything/", "category": "ai-tools" },
+      { "name": "OneUsefulThing", "url": "https://www.oneusefulthing.org/feed", "category": "ai-tools" },
+      { "name": "TechCrunch AI", "url": "https://techcrunch.com/category/artificial-intelligence/feed/", "category": "ai-news" },
+      { "name": "The Verge AI", "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml", "category": "ai-news" },
+      { "name": "MIT Tech Review", "url": "https://www.technologyreview.com/feed/", "category": "ai-news" },
+      { "name": "Ars Technica AI", "url": "https://feeds.arstechnica.com/arstechnica/technology-lab", "category": "ai-news" },
+      { "name": "Wired AI", "url": "https://www.wired.com/feed/tag/ai/latest/rss", "category": "ai-news" },
+      { "name": "VentureBeat AI", "url": "https://venturebeat.com/feed/", "category": "ai-news" },
+      { "name": "InfoQ AI/ML", "url": "https://feed.infoq.com/ai-ml-data-eng/", "category": "ai-news" },
+      { "name": "Last Week in AI", "url": "https://lastweekin.ai/feed", "category": "ai-news" },
+      { "name": "Andrej Karpathy", "url": "https://karpathy.github.io/feed.xml", "category": "ai-researcher" },
+      { "name": "THE DECODER", "url": "https://the-decoder.com/feed/", "category": "ai-news" },
+      { "name": "Latent Space", "url": "https://www.latent.space/feed", "category": "ai-news" },
+      { "name": "The Rundown AI", "url": "https://rss.beehiiv.com/feeds/2R3C6Bt5wj.xml", "category": "ai-news" },
+      { "name": "Interconnects", "url": "https://www.interconnects.ai/feed", "category": "ai-researcher" },
+      { "name": "MarkTechPost", "url": "https://www.marktechpost.com/feed", "category": "ai-news" },
+      { "name": "Ahead of AI", "url": "https://magazine.sebastianraschka.com/feed", "category": "ai-researcher" },
+      { "name": "BAIR Blog", "url": "https://bair.berkeley.edu/blog/feed.xml", "category": "paper" },
+      { "name": "Eugene Yan", "url": "https://eugeneyan.com/rss/", "category": "ai-researcher" },
+      { "name": "36kr 快讯", "url": "http://localhost:1200/36kr/newsflashes", "category": "ai-news-cn" },
+      { "name": "36kr 最新资讯", "url": "http://localhost:1200/36kr/news/latest", "category": "ai-news-cn" },
+      { "name": "IT之家", "url": "http://localhost:1200/ithome/it", "category": "ai-news-cn" },
+      { "name": "知乎热榜", "url": "http://localhost:1200/zhihu/hot", "category": "ai-news-cn" },
+
+
+      { "name": "Anthropic Blog", "url": "http://localhost:1200/anthropic/news", "category": "ai-official" },
+      { "name": "Anthropic Research", "url": "http://localhost:1200/anthropic/research", "category": "ai-official" },
+      { "name": "机器之心(Synced)", "url": "https://syncedreview.com/feed/", "category": "ai-news" },
+      { "name": "量子位", "url": "http://localhost:1200/qbitai/category/资讯", "category": "ai-news-cn" },
+      { "name": "少数派", "url": "http://localhost:1200/sspai/matrix", "category": "ai-news-cn" },
+      { "name": "爱范儿", "url": "http://localhost:1200/ifanr/index", "category": "ai-news-cn" },
+      { "name": "极客公园", "url": "http://localhost:1200/geekpark/179", "category": "ai-news-cn" },
+      { "name": "虎嗅", "url": "http://localhost:1200/huxiu/article", "category": "ai-news-cn" },
+      { "name": "品玩", "url": "http://localhost:1200/pingwest/status", "category": "ai-news-cn" },
+
+      { "name": "B站-数字生命卡兹克", "url": "http://localhost:1200/bilibili/user/video/313468110", "category": "ai-news-cn" },
+      { "name": "B站-花叔", "url": "http://localhost:1200/bilibili/user/video/14097567", "category": "ai-news-cn" },
+      { "name": "B站-何同学", "url": "http://localhost:1200/bilibili/user/video/163637592", "category": "ai-news-cn" },
+      { "name": "B站-老石谈芯", "url": "http://localhost:1200/bilibili/user/video/612932327", "category": "ai-news-cn" },
+
+      { "name": "Elon Musk (X)", "url": "http://localhost:1200/twitter/user/elonmusk", "category": "ai-news" },
+      { "name": "Sam Altman (X)", "url": "http://localhost:1200/twitter/user/sama", "category": "ai-news" },
+      { "name": "Andrej Karpathy (X)", "url": "http://localhost:1200/twitter/user/karpathy", "category": "ai-news" },
+      { "name": "Jim Fan (X)", "url": "http://localhost:1200/twitter/user/DrJimFan", "category": "ai-news" },
+      { "name": "Yann LeCun (X)", "url": "http://localhost:1200/twitter/user/ylecun", "category": "ai-news" },
+      { "name": "Anthropic (X)", "url": "http://localhost:1200/twitter/user/AnthropicAI", "category": "ai-official" },
+      { "name": "OpenAI (X)", "url": "http://localhost:1200/twitter/user/OpenAI", "category": "ai-official" },
+      { "name": "Google DeepMind (X)", "url": "http://localhost:1200/twitter/user/GoogleDeepMind", "category": "ai-official" }
+    ],
+    "reddit": {
+      "enabled": true,
+      "subreddits": [
+        { "subreddit": "MachineLearning", "sort": "hot", "fetch_limit": 20, "min_score": 50 },
+        { "subreddit": "LocalLLaMA", "sort": "hot", "fetch_limit": 20, "min_score": 50 },
+        { "subreddit": "artificial", "sort": "hot", "fetch_limit": 15, "min_score": 30 }
+      ]
+    },
+    "github": [
+      { "type": "user_events", "username": "karpathy" }
+    ]
+  },
+  "filtering": {
+    "ai_score_threshold": 6.0,
+    "time_window_hours": 168
+  }
+}

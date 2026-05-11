@@ -1,0 +1,42 @@
+# Environment & Secrets
+.env
+.env.local
+.env*.local
+
+# Database
+data/infohub.db
+data/*.db
+data/*.db-journal
+
+# Logs
+data/pipeline.log
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.uv/
+
+# Node / Frontend
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temp / debug files
+*.stackdump
+*.png
+!docs/*.png
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
