@@ -319,18 +319,22 @@ class InfoHubPipeline:
             enrich_done_count = 0
             enrich_lock = threading.Lock()
 
+            # Each thread reuses one event loop to avoid loop creation/teardown leak
+            _thread_loops: dict = {}  # thread_id -> event_loop
+
+            def _get_thread_loop():
+                tid = threading.get_ident()
+                if tid not in _thread_loops:
+                    _thread_loops[tid] = asyncio.new_event_loop()
+                return _thread_loops[tid]
+
             def _enrich_sync(enricher, item, loop):
                 nonlocal enrich_done_count
                 if cancel_event and cancel_event.is_set():
                     return
                 try:
-                    # Run the async enrich in a new event loop within this thread
-                    import asyncio as _aio
-                    _loop = _aio.new_event_loop()
-                    try:
-                        _loop.run_until_complete(enricher._enrich_item(item))
-                    finally:
-                        _loop.close()
+                    _loop = _get_thread_loop()
+                    _loop.run_until_complete(enricher._enrich_item(item))
                 except Exception as e:
                     logger.warning("[Pipeline] Enriching item %s failed: %s", item.id, e)
                 with enrich_lock:
@@ -340,7 +344,7 @@ class InfoHubPipeline:
             try:
                 ai_client_enrich = create_ai_client(config.ai)
                 enricher = ContentEnricher(ai_client_enrich)
-                loop = asyncio.get_event_loop()
+                loop = asyncio.get_running_loop()
 
                 with ThreadPoolExecutor(max_workers=5) as pool:
                     futures = [
@@ -352,6 +356,14 @@ class InfoHubPipeline:
                 raise
             except Exception as exc:
                 logger.warning("[Pipeline] Enrichment failed (non-fatal): %s", exc)
+            finally:
+                # Clean up thread-local event loops
+                for _loop in _thread_loops.values():
+                    try:
+                        _loop.close()
+                    except Exception:
+                        pass
+                _thread_loops.clear()
 
             # 9. Persist all items (enriched + skipped) as "enriched" stage
             all_important = already_enriched + needs_enrich + skip_enrich
@@ -482,6 +494,13 @@ class InfoHubPipeline:
                 "filtered": len(important),
             }
             logger.info("[Pipeline] %s completed: %s", domain_config.slug, result)
+
+            # Cleanup: reset token usage counter and force gc to release memory
+            from .ai.tokens import reset_usage
+            reset_usage()
+            import gc
+            gc.collect()
+
             return result
 
         except PipelineCancelled as exc:

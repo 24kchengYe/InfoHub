@@ -59,14 +59,11 @@ class ContentEnricher:
         """
         try:
             # Suppress primp "Impersonate ... does not exist" stderr warning
-            stderr = sys.stderr
-            sys.stderr = open(os.devnull, "w")
-            try:
+            # Use contextlib to avoid file handle leak
+            import contextlib
+            with open(os.devnull, "w") as devnull, contextlib.redirect_stderr(devnull):
                 ddgs = DDGS()
                 results = ddgs.text(query, max_results=max_results)
-            finally:
-                sys.stderr.close()
-                sys.stderr = stderr
         except Exception:
             return []
 
