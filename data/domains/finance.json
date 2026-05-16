@@ -36,7 +36,7 @@
 
       { "name": "Wall Street Journal", "url": "https://feeds.a.dj.com/rss/RSSMarketsMain.xml", "category": "finance-global", "description_zh": "华尔街日报市场版，全球最权威财经报纸", "description_en": "WSJ Markets, the world's most authoritative financial newspaper" },
       { "name": "Reuters (Business)", "url": "https://news.google.com/rss/search?q=when:24h+allinurl:reuters.com/business&ceid=US:en&hl=en-US&gl=US", "category": "finance-global", "description_zh": "路透社商业新闻，全球最大通讯社之一（Google News代理）", "description_en": "Reuters business news via Google News, one of world's largest wire services" },
-      { "name": "Barron's", "url": "https://www.barrons.com/xml/rss/3_7510.xml", "category": "finance-global", "description_zh": "巴伦周刊，深度投资分析与评论，巴菲特推荐读物", "description_en": "Barron's weekly, in-depth investment analysis, Buffett-recommended" },
+      { "name": "Barron's", "url": "https://www.barrons.com/xml/rss/3_7510.xml", "category": "finance-global", "enabled": false, "description_zh": "巴伦周刊（403付费墙），深度投资分析与评论", "description_en": "Barron's (403 paywall), in-depth investment analysis" },
       { "name": "Forbes (Business)", "url": "https://www.forbes.com/business/feed/", "category": "finance-global", "description_zh": "福布斯商业频道，商业与投资综合报道", "description_en": "Forbes Business, comprehensive business and investing coverage" },
       { "name": "Investing.com", "url": "https://www.investing.com/rss/news.rss", "category": "finance-global", "description_zh": "Investing.com全部新闻，外汇/商品/股票/宏观全覆盖", "description_en": "Investing.com all news, forex/commodities/stocks/macro coverage" },
 
@@ -56,7 +56,27 @@
       { "name": "Nasdaq", "url": "https://www.nasdaq.com/feed/nasdaq-original/rss.xml", "category": "finance-analysis", "description_zh": "纳斯达克原创内容，市场分析与金融趋势", "description_en": "Nasdaq original content, market analysis and financial trends" },
       { "name": "Yahoo Finance", "url": "https://finance.yahoo.com/news/rssindex", "category": "finance-analysis", "description_zh": "雅虎财经头条，综合财经新闻覆盖面极广", "description_en": "Yahoo Finance top stories, extremely broad financial news coverage" },
       { "name": "ZeroHedge", "url": "https://cms.zerohedge.com/fullrss2.xml", "category": "finance-analysis", "description_zh": "ZeroHedge另类金融视角，宏观分析与市场评论，交易员圈流行", "description_en": "ZeroHedge alternative finance, macro analysis, popular among traders" },
-      { "name": "ForexLive", "url": "https://www.forexlive.com/feed", "category": "finance-analysis", "description_zh": "ForexLive外汇实时，外汇/股票/加密市场分析", "description_en": "ForexLive, forex/stocks/crypto market analysis and signals" }
+      { "name": "ForexLive", "url": "https://www.forexlive.com/feed", "category": "finance-analysis", "description_zh": "ForexLive外汇实时，外汇/股票/加密市场分析", "description_en": "ForexLive, forex/stocks/crypto market analysis and signals" },
+
+      { "name": "Nikkei Asia", "url": "http://localhost:1200/nikkei/asia", "category": "finance-asia", "description_zh": "日经亚洲，日本第一财经媒体英文版，亚洲商业权威", "description_en": "Nikkei Asia, Japan's premier business media, authoritative Asian coverage" },
+      { "name": "日经中文网", "url": "http://localhost:1200/nikkei/cn", "category": "finance-asia", "description_zh": "日经新闻中文版，日本与亚洲经济深度报道", "description_en": "Nikkei Chinese edition, in-depth Japan and Asian economy coverage" },
+      { "name": "南华早报 (SCMP)", "url": "https://www.scmp.com/rss/4/feed", "category": "finance-asia", "description_zh": "香港南华早报，亚洲政治经济英文权威报纸", "description_en": "South China Morning Post, authoritative English paper on Asian affairs" },
+      { "name": "联合早报", "url": "http://localhost:1200/zaobao/realtime/world", "category": "finance-asia", "description_zh": "新加坡联合早报，东南亚华文第一大报", "description_en": "Zaobao, Singapore's leading Chinese-language newspaper" },
+      { "name": "Korea Times", "url": "https://www.koreatimes.co.kr/www2/common/rss.asp", "category": "finance-asia", "description_zh": "韩国时报，韩国主流英文报纸，韩国经济政治报道", "description_en": "Korea Times, mainstream Korean English newspaper" },
+      { "name": "韩联社 (Yonhap)", "url": "http://localhost:1200/yonhapnews/kr", "category": "finance-asia", "enabled": false, "description_zh": "韩联社（RSSHub路由503），韩国最大通讯社", "description_en": "Yonhap (RSSHub 503), South Korea's largest news agency" },
+
+      { "name": "Bank of England", "url": "https://www.bankofengland.co.uk/rss/news", "category": "finance-macro", "description_zh": "英国央行新闻，英镑利率决议与货币政策", "description_en": "Bank of England news, GBP rate decisions and monetary policy" },
+      { "name": "Bank of Japan", "url": "https://www.boj.or.jp/en/rss/whatsnew.xml", "category": "finance-macro", "description_zh": "日本央行最新动态，日元利率决议与经济数据", "description_en": "Bank of Japan updates, JPY rate decisions and economic data" },
+      { "name": "IMF Blog", "url": "https://www.imf.org/en/Blogs/rss", "category": "finance-macro", "description_zh": "国际货币基金组织博客，全球宏观经济权威分析", "description_en": "IMF Blog, authoritative global macroeconomic analysis" },
+      { "name": "BIS (国际清算银行)", "url": "https://www.bis.org/rss/speeches_rss.xml", "category": "finance-macro", "description_zh": "国际清算银行，央行的央行，全球金融稳定报告", "description_en": "BIS, central bank of central banks, global financial stability reports" },
+      { "name": "World Bank Blog", "url": "https://blogs.worldbank.org/en/home/rss.xml", "category": "finance-macro", "description_zh": "世界银行博客，发展中国家与新兴市场经济分析", "description_en": "World Bank Blog, developing economies and emerging markets analysis" },
+
+      { "name": "BBC Business", "url": "https://feeds.bbci.co.uk/news/business/rss.xml", "category": "finance-global", "description_zh": "BBC商业频道，全球商业新闻覆盖面最广的公共媒体", "description_en": "BBC Business, broadest global business coverage from public media" },
+      { "name": "The Economist", "url": "https://www.economist.com/finance-and-economics/rss.xml", "category": "finance-global", "description_zh": "经济学人金融与经济版，全球宏观最权威周刊", "description_en": "The Economist finance, the world's most authoritative weekly on macro" },
+      { "name": "Der Spiegel International", "url": "https://www.spiegel.de/international/index.rss", "category": "finance-global", "description_zh": "德国明镜周刊英文版，欧洲政经视角", "description_en": "Der Spiegel English edition, European political-economic perspective" },
+
+      { "name": "OilPrice.com", "url": "https://oilprice.com/rss/main", "category": "finance-commodity", "description_zh": "原油/天然气/能源市场专业媒体，大宗商品必读", "description_en": "OilPrice.com, professional oil/gas/energy market media, must-read for commodities" },
+      { "name": "Kitco News", "url": "https://www.kitco.com/news/category/mining/rss", "category": "finance-commodity", "description_zh": "Kitco贵金属新闻，黄金白银市场全球权威", "description_en": "Kitco News, global authority on gold and precious metals markets" }
     ],
     "reddit": {
       "enabled": true,
