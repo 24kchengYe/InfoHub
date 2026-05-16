@@ -121,6 +121,9 @@ class RSSSourceConfig(BaseModel):
     url: HttpUrl
     enabled: bool = True
     category: Optional[str] = None
+    description: Optional[str] = None
+    description_zh: Optional[str] = None
+    description_en: Optional[str] = None
 
 
 class RedditSubredditConfig(BaseModel):

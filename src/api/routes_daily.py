@@ -13,7 +13,7 @@ router = APIRouter(prefix="/api/daily", tags=["daily"])
 @router.get("")
 async def list_dailies(
     request: Request,
-    limit: int = Query(20, ge=1, le=100),
+    limit: int = Query(0, ge=0),
 ):
     """Available daily summaries. Includes today if items exist."""
     db = request.app.state.db

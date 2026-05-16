@@ -68,6 +68,9 @@ class InfoHubScheduler:
             trigger,
             id="infohub_cron",
             replace_existing=True,
+            misfire_grace_time=3600,  # tolerate up to 1h delay
+            coalesce=True,           # merge missed fires into one
+            max_instances=1,         # explicit: no concurrent runs
         )
         self._scheduler.start()
         logger.info("[Scheduler] Started with cron: %s", self.scheduler_config.cron)
@@ -83,6 +86,9 @@ class InfoHubScheduler:
     # ------------------------------------------------------------------
     # Internal
     # ------------------------------------------------------------------
+
+    # Per-domain timeout for scheduled runs (seconds).
+    _DOMAIN_TIMEOUT = 30 * 60  # 30 minutes
 
     async def _run_all(self) -> None:
         """Execute the pipeline for every enabled domain."""
@@ -104,9 +110,17 @@ class InfoHubScheduler:
                 break
 
             try:
-                result = await self.pipeline.run(
-                    dc, hours=hours, cancel_event=self.shutdown_event
+                result = await asyncio.wait_for(
+                    self.pipeline.run(
+                        dc, hours=hours, cancel_event=self.shutdown_event
+                    ),
+                    timeout=self._DOMAIN_TIMEOUT,
                 )
                 logger.info("[Scheduler] %s: %s", dc.slug, result)
+            except asyncio.TimeoutError:
+                logger.error(
+                    "[Scheduler] %s timed out after %ds — skipping",
+                    dc.slug, self._DOMAIN_TIMEOUT,
+                )
             except Exception as exc:
                 logger.error("[Scheduler] %s failed: %s", dc.slug, exc)

@@ -11,6 +11,10 @@ export interface ItemMetadata {
   community_discussion_zh?: string;
   sources?: string[];
   image_url?: string;
+  feed_name?: string;
+  feed_description?: string;
+  feed_description_zh?: string;
+  feed_description_en?: string;
   [key: string]: any;
 }
 

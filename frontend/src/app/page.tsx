@@ -49,7 +49,7 @@ import {
   type TradingOverview,
   type SentimentData,
 } from "@/lib/api";
-import { cn, formatTime, scoreStyle, sourceIcon, groupByDate, type Lang } from "@/lib/utils";
+import { cn, formatTime, scoreStyle, sourceIcon, sourceDescription, groupByDate, type Lang } from "@/lib/utils";
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -1424,10 +1424,10 @@ function TimelineCard({
         )}
 
         {/* Source info — icon + name + handle */}
-        <div className="flex items-center gap-2 mb-2.5">
+        <div className="flex items-center gap-2 mb-1">
           <span className="text-base leading-none">{sourceIcon(item.source_type)}</span>
           <span className="text-sm font-medium text-[var(--text-primary)]">
-            {item.source_type}
+            {item.metadata?.feed_name || item.source_type}
           </span>
           {item.author && (
             <span className="text-sm text-[var(--text-tertiary)]">
@@ -1435,6 +1435,15 @@ function TimelineCard({
             </span>
           )}
         </div>
+        {/* Source description — second line, bilingual */}
+        {(() => {
+          const desc = lang === "en"
+            ? (item.metadata?.feed_description_en || sourceDescription(item.source_type, "en"))
+            : (item.metadata?.feed_description_zh || item.metadata?.feed_description || sourceDescription(item.source_type, "zh"));
+          return desc ? (
+            <p className="text-xs text-[var(--text-tertiary)] mb-2.5 pl-[26px]">{desc}</p>
+          ) : null;
+        })()}
 
         {/* Title — clickable link to source */}
         <h3 className="text-[17px] font-bold leading-snug mb-2.5 pr-24">

@@ -19,8 +19,8 @@ timeout /t 3 /nobreak >nul
 :: Start Frontend (Next.js on port 3000)
 echo [InfoHub] Starting frontend on port 3000...
 cd /d "%INFOHUB_DIR%\frontend"
-start /b "" cmd /c "cd /d %INFOHUB_DIR%\frontend && npx next start -p 3000 > %INFOHUB_DIR%\logs\frontend.log 2>&1"
+start /b "" cmd /c "cd /d %INFOHUB_DIR%\frontend && npx next start -p 3000 -H 0.0.0.0 > %INFOHUB_DIR%\logs\frontend.log 2>&1"
 
 echo [InfoHub] Services started.
-echo   Backend:  http://127.0.0.1:18899
-echo   Frontend: http://localhost:3000
+echo   Backend:  http://0.0.0.0:18899
+echo   Frontend: http://0.0.0.0:3000

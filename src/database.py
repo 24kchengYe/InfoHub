@@ -681,14 +681,31 @@ async def clear_all_data(db_path: Path = DB_PATH) -> None:
 
 
 async def get_daily_summaries(
-    limit: int = 20, db_path: Path = DB_PATH
+    limit: int = 0, db_path: Path = DB_PATH
 ) -> List[Dict[str, Any]]:
-    """Return recent daily summaries ordered by date DESC."""
+    """Return daily summaries ordered by date DESC.
+
+    If *limit* is 0 or negative, return all summaries (no cap).
+    Otherwise *limit* refers to the number of distinct **dates**.
+    """
     async with _connect(db_path) as db:
-        rows = await db.execute_fetchall(
-            "SELECT * FROM daily_summaries ORDER BY date DESC, domain ASC LIMIT ?",
-            (limit,),
-        )
+        if limit <= 0:
+            rows = await db.execute_fetchall(
+                "SELECT * FROM daily_summaries ORDER BY date DESC, domain ASC",
+            )
+        else:
+            date_rows = await db.execute_fetchall(
+                "SELECT DISTINCT date FROM daily_summaries ORDER BY date DESC LIMIT ?",
+                (limit,),
+            )
+            if not date_rows:
+                return []
+            dates = [r[0] for r in date_rows]
+            placeholders = ",".join("?" for _ in dates)
+            rows = await db.execute_fetchall(
+                f"SELECT * FROM daily_summaries WHERE date IN ({placeholders}) ORDER BY date DESC, domain ASC",
+                dates,
+            )
     return [dict(r) for r in rows]
 
 
