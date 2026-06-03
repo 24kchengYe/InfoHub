@@ -289,6 +289,12 @@ async def infohub_search(
 def main():
     """Run the MCP server over stdio."""
     import os
+
+    # NOTE: No singleton lock here on purpose. Multiple MCP clients
+    # (Claude Code AND kimi-cli) each spawn their own server instance and must
+    # not block each other. A previous singleton lock (mcp_lock_infohub.pid)
+    # made the second client return early and fail to connect. Removed 2026-06-03.
+
     # Remove ALL_PROXY to prevent socks5 issues; HTTP(S)_PROXY is sufficient
     os.environ.pop("ALL_PROXY", None)
     os.environ.pop("all_proxy", None)
