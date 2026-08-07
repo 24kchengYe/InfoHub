@@ -33,6 +33,24 @@ services:
     networks:
       - caddy_web
 
+  infohub-mcp:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.backend
+    container_name: infohub-mcp
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      INFOHUB_DATA_DIR: /app/data
+    command: ["/app/.venv/bin/python", "-m", "src.mcp.http_server"]
+    volumes:
+      - /opt/infohub/data:/app/data
+    ports:
+      # Tailscale 内网免认证通道（与 memomind 对称）
+      - "100.101.110.113:18897:18897"
+    networks:
+      - caddy_web
+
 networks:
   caddy_web:
     external: true
