@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 # host explicitly.
 mcp.settings.transport_security = TransportSecuritySettings(
     enable_dns_rebinding_protection=True,
-    allowed_hosts=["infohub.duqi.top", "infohub.duqi.top:*", "127.0.0.1:*", "localhost:*"],
+    allowed_hosts=["infohub.duqi.top", "infohub.duqi.top:*", "100.101.110.113", "100.101.110.113:*", "127.0.0.1:*", "localhost:*"],
     allowed_origins=["https://infohub.duqi.top", "http://127.0.0.1:*", "http://localhost:*"],
 )
 

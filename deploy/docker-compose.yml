@@ -1,0 +1,38 @@
+name: infohub
+
+services:
+  infohub-backend:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.backend
+    container_name: infohub-backend
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      SUB2API_API_KEY: ${SUB2API_API_KEY}
+      INFOHUB_DATA_DIR: /app/data
+    volumes:
+      - /opt/infohub/data:/app/data
+    networks:
+      - caddy_web
+
+  infohub-frontend:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.frontend
+    container_name: infohub-frontend
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      INFOHUB_BACKEND_URL: http://infohub-backend:18899
+      INFOHUB_PUBLIC_URL: https://infohub.duqi.top
+    depends_on:
+      - infohub-backend
+    ports:
+      - "127.0.0.1:18898:3000"
+    networks:
+      - caddy_web
+
+networks:
+  caddy_web:
+    external: true
