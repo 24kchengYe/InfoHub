@@ -47,7 +47,7 @@ services:
       - /opt/infohub/data:/app/data
     ports:
       # Tailscale 内网免认证通道（与 memomind 对称）
-      - "100.101.110.113:18897:18897"
+      - "${BIND_IP:-127.0.0.1}:18897:18897"   # BIND_IP=服务器 Tailscale IP，写在 deploy/.env
     networks:
       - caddy_web
 

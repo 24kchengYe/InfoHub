@@ -27,10 +27,15 @@ logger = logging.getLogger(__name__)
 # The MCP SDK rejects non-localhost Host headers by default (DNS-rebinding
 # protection). Bearer auth already guards this endpoint, so allow the public
 # host explicitly.
+_extra_host = os.environ.get("INFOHUB_MCP_EXTRA_HOST", "")  # 如 Tailscale IP，经 env 注入不入库
+_allowed_hosts = ["infohub.duqi.top", "infohub.duqi.top:*", "127.0.0.1:*", "localhost:*"]
+if _extra_host:
+    _allowed_hosts += [_extra_host, f"{_extra_host}:*"]
 mcp.settings.transport_security = TransportSecuritySettings(
     enable_dns_rebinding_protection=True,
-    allowed_hosts=["infohub.duqi.top", "infohub.duqi.top:*", "100.101.110.113", "100.101.110.113:*", "127.0.0.1:*", "localhost:*"],
-    allowed_origins=["https://infohub.duqi.top", "http://127.0.0.1:*", "http://localhost:*"],
+    allowed_hosts=_allowed_hosts,
+    allowed_origins=["https://infohub.duqi.top", "http://127.0.0.1:*", "http://localhost:*"]
+    + ([f"http://{_extra_host}:*"] if _extra_host else []),
 )
 
 MCP_TOKEN = os.environ.get("INFOHUB_MCP_TOKEN", "")
